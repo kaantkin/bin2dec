@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bin2Dec - Plain HTML and JavaScript</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="ele-container">
+        <div class="input-box">
+            <label for="user-input">Input Binary Digit</label>
+            <input id="user-input" class="user-input" type="text" maxlength="8" />
+            <button id="convert-btn" onclick="convert()">Convert</button>
+        </div>
+        <br />
+        <div id="result-box" class="result-box">
+        </div>
+    </div>
+
+    <script>
+        const inputEle = document.getElementById("user-input");
+        inputEle.addEventListener("input", e => {
+            // Check for text in input
+            if (e.currentTarget.value.trim().match(/[a-zA-Z]/g)) {
+                document.getElementById("result-box").innerHTML = "<p>Input cannot contain text!</p>";
+                document.getElementById("convert-btn").style.display = "none";
+            } 
+            // Check for only 1 and 0
+            else if (e.currentTarget.value.trim().match(/[2-9]/g)) {
+                document.getElementById("result-box").innerHTML = "<p>Please input valid bits (0 or 1)!</p>";
+                document.getElementById("convert-btn").style.display = "none";
+            }
+            // Check for special characters
+            else if (e.currentTarget.value.trim().match(/[$&+,:;=?@#|'<>.^*()%!-]/g)) {
+                document.getElementById("result-box").innerHTML = "<p>Input cannot contain special characters!</p>";
+                document.getElementById("convert-btn").style.display = "none";
+            } 
+            else {
+                document.getElementById("result-box").innerHTML = "";
+                document.getElementById("convert-btn").style.display = "block";
+            }
+        })
+
+        function convert() {
+            const userInput = document.getElementById("user-input").value.trim();
+            let value = 0;
+            // Ensures input value exists
+            if (userInput.length === 0 || userInput === null) {
+                document.getElementById("result-box").innerHTML = "<p>You must provide an input!</p>";
+            }
+            else {
+                // Iterate backwards
+                for (let i = userInput.length-1; i >= 0; i--) {
+                    value += parseInt(userInput[i]) * Math.pow(2, userInput.length-1-i);
+                }
+                document.getElementById("result-box").innerHTML = `<p>${value}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

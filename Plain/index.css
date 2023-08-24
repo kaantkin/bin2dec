@@ -1,0 +1,44 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.ele-container {
+    width: 800px;
+    height: 500px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: azure;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.input-box label {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.input-box input {
+    font-size: 18px;
+    padding: 5px 5px 5px 5px;
+}
+
+.input-box button {
+    width: 150px;
+    margin-top: 15px;
+}
